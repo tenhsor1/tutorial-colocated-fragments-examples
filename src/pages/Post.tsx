@@ -9,16 +9,27 @@ import { PostHeader } from '../components/PostHeader';
 const POST_QUERY = gql`
   query Post($id: String!) {
     post(id: $id) {
-      ...PostHeader,
-      ...PostContent
+      id
+      title
+      content
+      date
+      author {
+        id
+        name
+        image
+      }
       comments {
-        ...CommentMain
+        id
+        content
+        date
+        author {
+          id
+          name
+          image
+        }
       }
     }
   }
-  ${PostHeader.fragments.main}
-  ${PostContent.fragments.main}
-  ${Comment.fragments.main}
 `;
 
 export const Post = () => {

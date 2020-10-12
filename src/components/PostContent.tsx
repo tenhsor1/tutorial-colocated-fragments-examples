@@ -1,16 +1,11 @@
-import gql from 'graphql-tag';
 import React from 'react';
-import { PostContentFragment } from '../generated/graphql-types';
 
-const postContentFragment = gql`
-	fragment PostContent on Post {
-			id
-    	content
-      date
-  	}
-`;
 export interface PostContentProps {
-	data: PostContentFragment
+	data: {
+		id: string;
+		content: string;
+		date: string;
+	}
 }
 export const PostContent = ({ data }: PostContentProps) => {
 	return (
@@ -21,8 +16,4 @@ export const PostContent = ({ data }: PostContentProps) => {
       </div>
 		</div>
 	);
-};
-
-PostContent.fragments = {
-	main: postContentFragment
 };
