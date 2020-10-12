@@ -1,0 +1,28 @@
+type Query {
+  posts: [Post] @listLength(min: 10, max: 20)
+  post(id: String!): Post
+}
+
+type Post {
+  id: ID!
+  title: String! @fake(type: words)
+  content: String! @fake(type: lorem)
+  date: String! @fake(type: pastDate)
+  author: User!
+  comments: [Comment] @listLength(min: 0, max: 40)
+}
+
+type User {
+  id: ID!
+  name: String! @fake(type: fullName)
+  email: String @fake(type: email)
+  image: String @fake(type: imageUrl)
+  twitter: String @fake(type: url)
+}
+
+type Comment {
+  id: ID!
+  author: User!
+  content: String! @fake(type: lorem)
+  date: String! @fake(type: pastDate)
+}
