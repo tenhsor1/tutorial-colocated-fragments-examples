@@ -1,5 +1,6 @@
 import gql from 'graphql-tag';
 import React from 'react';
+import { CommentMainFragment } from '../generated/graphql-types';
 import { Avatar } from './Avatar';
 
 const COMMENT_MAIN_FRAGMENT = gql`
@@ -14,8 +15,10 @@ const COMMENT_MAIN_FRAGMENT = gql`
   ${Avatar.fragments.main}
 `;
 
-//@ts-ignore
-export const Comment = ({ data }) => {
+export interface AvatarProps {
+	data: CommentMainFragment
+}
+export const Comment = ({ data }: AvatarProps) => {
 	return (
 		<div>
 			<Avatar data={data.author} />

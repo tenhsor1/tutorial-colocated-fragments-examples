@@ -1,6 +1,7 @@
 import gql from 'graphql-tag';
 import React from 'react';
 import { Link } from 'react-router-dom';
+import { PostHeaderFragment } from '../generated/graphql-types';
 import { Avatar } from './Avatar';
 
 const postHeaderFragment = gql`
@@ -14,8 +15,10 @@ const postHeaderFragment = gql`
     ${Avatar.fragments.main}
 `;
 
-//@ts-ignore
-export const PostHeader = ({ data }) => {
+export interface PostHeaderProps {
+	data: PostHeaderFragment
+}
+export const PostHeader = ({ data }: PostHeaderProps) => {
 	return (
 		<div>
 			<Avatar data={data.author} />
