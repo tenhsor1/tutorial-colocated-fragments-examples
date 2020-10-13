@@ -1,22 +1,7 @@
 import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
 import React from 'react';
 import { PostHeader } from '../components/PostHeader';
-
-const POST_LIST_QUERY = gql`
-  query PostList {
-    posts {
-      id
-      title
-      date
-      author {
-        id
-        name
-        image
-      }
-    }
-  }
-`;
+import { POST_LIST_QUERY } from '../queries';
 
 export const PostList = () => {
   const { loading, error, data } = useQuery(POST_LIST_QUERY);

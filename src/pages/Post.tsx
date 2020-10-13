@@ -1,36 +1,10 @@
 import { useQuery } from '@apollo/client';
-import gql from 'graphql-tag';
 import React from 'react';
 import { useParams } from 'react-router-dom';
 import { Comment } from '../components/Comment';
 import { PostContent } from '../components/PostContent';
 import { PostHeader } from '../components/PostHeader';
-
-const POST_QUERY = gql`
-  query Post($id: String!) {
-    post(id: $id) {
-      id
-      title
-      content
-      date
-      author {
-        id
-        name
-        image
-      }
-      comments {
-        id
-        content
-        date
-        author {
-          id
-          name
-          image
-        }
-      }
-    }
-  }
-`;
+import { POST_QUERY } from '../queries';
 
 export const Post = () => {
   //@ts-ignore
