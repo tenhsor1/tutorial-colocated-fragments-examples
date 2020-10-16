@@ -1,22 +1,10 @@
 import gql from 'graphql-tag';
 import React from 'react';
-import { CommentMainFragment } from '../generated/graphql-types';
+import { CommentFragment } from '../generated/graphql-types';
 import { Avatar } from './Avatar';
 
-const COMMENT_MAIN_FRAGMENT = gql`
-  fragment CommentMain on Comment {
-    id
-    author {
-      ...AvatarMain
-    }
-    content
-    date
-  }
-  ${Avatar.fragments.main}
-`;
-
 export interface AvatarProps {
-	data: CommentMainFragment
+	data: CommentFragment
 }
 export const Comment = ({ data }: AvatarProps) => {
 	return (
@@ -31,5 +19,15 @@ export const Comment = ({ data }: AvatarProps) => {
 };
 
 Comment.fragments = {
-	main: COMMENT_MAIN_FRAGMENT
+	comment: gql`
+    fragment Comment on Comment {
+      id
+      author {
+        ...Avatar
+      }
+      content
+      date
+    }
+    ${Avatar.fragments.user}
+  `
 };

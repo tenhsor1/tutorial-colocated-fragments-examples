@@ -10,7 +10,7 @@ const POST_LIST_QUERY = gql`
       ...PostHeader,
     }
   }
-  ${PostHeader.fragments.main}
+  ${PostHeader.fragments.post}
 `;
 
 export const PostList = () => {

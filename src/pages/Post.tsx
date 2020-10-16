@@ -12,13 +12,13 @@ const POST_QUERY = gql`
       ...PostHeader,
       ...PostContent
       comments {
-        ...CommentMain
+        ...Comment
       }
     }
   }
-  ${PostHeader.fragments.main}
-  ${PostContent.fragments.main}
-  ${Comment.fragments.main}
+  ${PostHeader.fragments.post}
+  ${PostContent.fragments.post}
+  ${Comment.fragments.comment}
 `;
 
 export const Post = () => {

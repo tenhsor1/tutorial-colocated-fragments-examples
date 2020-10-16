@@ -47,17 +47,17 @@ export type Comment = {
   date: Scalars['String'];
 };
 
-export type AvatarMainFragment = (
+export type AvatarFragment = (
   { __typename?: 'User' }
   & Pick<User, 'id' | 'name' | 'image'>
 );
 
-export type CommentMainFragment = (
+export type CommentFragment = (
   { __typename?: 'Comment' }
   & Pick<Comment, 'id' | 'content' | 'date'>
   & { author: (
     { __typename?: 'User' }
-    & AvatarMainFragment
+    & AvatarFragment
   ) }
 );
 
@@ -71,7 +71,7 @@ export type PostHeaderFragment = (
   & Pick<Post, 'id' | 'title'>
   & { author: (
     { __typename?: 'User' }
-    & AvatarMainFragment
+    & AvatarFragment
   ) }
 );
 
@@ -86,7 +86,7 @@ export type PostQuery = (
     { __typename?: 'Post' }
     & { comments?: Maybe<Array<Maybe<(
       { __typename?: 'Comment' }
-      & CommentMainFragment
+      & CommentFragment
     )>>> }
     & PostHeaderFragment
     & PostContentFragment

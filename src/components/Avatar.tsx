@@ -1,17 +1,9 @@
 import gql from 'graphql-tag';
 import React from 'react';
-import { AvatarMainFragment } from '../generated/graphql-types';
+import { AvatarFragment } from '../generated/graphql-types';
 import { Image } from './Image';
-
-const AVATAR_MAIN_FRAGMENT = gql`
-	fragment AvatarMain on User {
-			id
-    	name
-    	image
-  	}
-`;
 export interface AvatarProps {
-	data: AvatarMainFragment
+	data: AvatarFragment
 }
 export const Avatar = ({ data }: AvatarProps) => {
 	return (
@@ -27,5 +19,11 @@ export const Avatar = ({ data }: AvatarProps) => {
 };
 
 Avatar.fragments = {
-	main: AVATAR_MAIN_FRAGMENT
+	user: gql`
+		fragment Avatar on User {
+			id
+    	name
+    	image
+  	}
+	`
 };
