@@ -1,14 +1,6 @@
 import gql from 'graphql-tag';
 import React from 'react';
 
-const postContentFragment = gql`
-	fragment PostContent on Post {
-			id
-    	content
-      date
-  	}
-`;
-
 //@ts-ignore
 export const PostContent = (props) => {
 	return (
@@ -22,5 +14,11 @@ export const PostContent = (props) => {
 };
 
 PostContent.fragments = {
-	main: postContentFragment
+	post: gql`
+		fragment PostContent on Post {
+			id
+    	content
+      date
+  	}
+	`
 };

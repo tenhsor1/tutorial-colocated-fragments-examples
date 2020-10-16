@@ -2,18 +2,6 @@ import gql from 'graphql-tag';
 import React from 'react';
 import { Avatar } from './Avatar';
 
-const COMMENT_MAIN_FRAGMENT = gql`
-  fragment CommentMain on Comment {
-    id
-    author {
-      ...AvatarMain
-    }
-    content
-    date
-  }
-  ${Avatar.fragments.main}
-`;
-
 //@ts-ignore
 export const Comment = ({ data }) => {
 	return (
@@ -28,5 +16,15 @@ export const Comment = ({ data }) => {
 };
 
 Comment.fragments = {
-	main: COMMENT_MAIN_FRAGMENT
+	comment: gql`
+    fragment Comment on Comment {
+      id
+      author {
+        ...Avatar
+      }
+      content
+      date
+    }
+    ${Avatar.fragments.user}
+  `
 };

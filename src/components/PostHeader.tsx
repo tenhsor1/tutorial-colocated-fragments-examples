@@ -3,17 +3,6 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { Avatar } from './Avatar';
 
-const postHeaderFragment = gql`
-	fragment PostHeader on Post {
-			id
-    	title
-    	author {
-        ...AvatarMain
-      }
-  	}
-    ${Avatar.fragments.main}
-`;
-
 //@ts-ignore
 export const PostHeader = ({ data }) => {
 	return (
@@ -27,5 +16,14 @@ export const PostHeader = ({ data }) => {
 };
 
 PostHeader.fragments = {
-	main: postHeaderFragment
+	post: gql`
+		fragment PostHeader on Post {
+			id
+    	title
+    	author {
+        ...Avatar
+      }
+  	}
+    ${Avatar.fragments.user}
+	`
 };
